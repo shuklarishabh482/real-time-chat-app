@@ -2,9 +2,7 @@ import { create } from "zustand";
 import { axiosInstance } from "../lib/axios.js";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client";
-
-const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5001" : "/";
-
+const BASE_URL = import.meta.env.VITE_BACKEND_HOST || "http://localhost:4000";
 export const useAuthStore = create((set, get) => ({
   authUser: null,
   isSigningUp: false,
@@ -16,8 +14,7 @@ export const useAuthStore = create((set, get) => ({
 
   checkAuth: async () => {
     try {
-      const res = await axiosInstance.get("/auth/check");
-
+      const res = await axiosInstance.get("/");
       set({ authUser: res.data });
       get().connectSocket();
     } catch (error) {

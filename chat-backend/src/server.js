@@ -2,25 +2,19 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-
 import path from "path";
-
-import { connectDB } from "./lib/db.js";
-
+import {connectDB} from "./lib/db.js";
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
-import { app, server } from "./lib/socket.js";
-
-dotenv.config();
-
+import { app, server} from "./lib/socket.js";
 const PORT = process.env.PORT;
 const __dirname = path.resolve();
-
+dotenv.config({ path: path.resolve(__dirname, '..', '.env') });
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_URL|| "http://localhost:5173",
     credentials: true,
   })
 );
