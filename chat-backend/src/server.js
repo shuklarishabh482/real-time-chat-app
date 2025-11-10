@@ -12,12 +12,6 @@ const __dirname = path.resolve();
 dotenv.config({ path: path.resolve(__dirname, '..', '.env') });
 app.use(express.json());
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-  })
-);
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
