@@ -1,33 +1,13 @@
 {
-  "name": "chat-app",
+  "name": "real-time-chat-app",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "node chat-backend/src/server.js",
     "build": "npm install --prefix chat-backend && npm install --prefix frontend && npm run build --prefix frontend",
     "start": "npm run start --prefix chat-backend"
   },
   "keywords": [],
   "author": "",
   "license": "ISC"
-    "dependencies": {
-    "@socket.io/redis-adapter":"^8.3.0",
-    "bcrypt": "^6.0.0",
-    "bcryptjs": "^3.0.3",
-    "cloudinary": "^2.8.0",
-    "cookie-parser": "^1.4.7",
-    "cors": "^2.8.5",
-    "dotenv": "^17.2.3",
-    "express": "^5.1.0",
-    "express-rate-limit": "^8.2.1",
-    "helmet": "^8.1.0",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.19.3",
-    "morgan": "^1.10.1",
-    "redis": "^5.9.0",
-    "salt": "^0.5.5",
-    "socket.io": "^4.8.1"
-  }
-
 }
