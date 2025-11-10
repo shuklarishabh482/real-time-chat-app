@@ -21,29 +21,12 @@ app.use(
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
-app.use((req, res, next) => {
-    // If the request reaches this point, no route handled it.
-    console.log(`404: Route Not Found: ${req.method} ${req.originalUrl}`);
-    res.status(404).json({ 
-        success: false, 
-        message: 'Resource Not Found. Check the API URL and method.' 
-    });
-});
-
-// 2. Global Error Handler Middleware (Handles errors thrown from within your routes)
-app.use((err, req, res, next) => {
-    // Log the error stack for debugging in the server logs
-    console.error("--- Global Error Caught ---");
-    console.error(err.stack);
-    
-    // Send a generic 500 error response to the client
-    res.status(err.statusCode || 500).json({ 
-        success: false, 
-        message: 'Server Error', 
-        error: err.message || 'An unknown error occurred'
-    });
-});
-
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+  });
+}
 server.listen(PORT, () => {
   console.log("server is running on PORT:" + PORT);
   connectDB();
