@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "dev": "node src/server.js",
     "build": "npm install --prefix chat-backend && npm install --prefix frontend && npm run build --prefix frontend",
     "start": "npm run start --prefix chat-backend"
   },
